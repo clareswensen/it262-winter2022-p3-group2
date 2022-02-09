@@ -1,1 +1,16 @@
 /* styles for menu.php */
+form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+button{
+  width: 25%;
+}
+.item-container{
+  border: 1px solid blue;
+  margin: 1em;
+  padding: 1em;
+  width: 33%;
+}
