@@ -5,19 +5,41 @@
 // menu items have quantity selector
 
 class MenuItem {
-  public $name = '';
-  public $description = '';
-  public $price = 0;
+  public $name;
+  public $description;
+  public $price;
+  private $max_quantitiy;
 
-  public function __construct($name, $description, $price) {
+  public function __construct(String $name, String $description, Float $price, int $max_quantitiy) {
     $this->name = $name;
     $this->description = $description;
     $this->price = $price;
+    $this->max_quantity = $max_quantitiy;
+  }
+
+  public function getName() {
+    return $this->name;
+  }
+  public function getDesc() {
+    return $this->description;
   }
   public function getPrice() {
-    echo $this->price;
+    return $this->price;
+  }
+  public function getMax() {
+    return $this->max_quantity;
+  }
+
+  public function getOption($option_count, $option_val) {
+    $opt = '';
+    for ($i = 0; $i <= $option_count; $i ++) {
+      $opt .= '<option value="'.$i.'">'.$i.'</option>';
+    }
+    return $opt;
   }
 }
+
+
 // class Item
 // {
 //   public $ID = 0;
