@@ -1,8 +1,11 @@
 <?php
+include('CartItem.php');
 // Menu.php
 class Menu {
   public $title;
   public $menuData;
+  // stack, list, queue
+  public $cart = [];
 
   public function __construct($menuData, $title) {
     $this->title = $title;
@@ -28,9 +31,27 @@ class Menu {
     echo $str;
   }
 
-  public function calculateTotal($cart){
-    // kata:
-    // sum the prices of the objects stored in the $cart array
-    // output the total
+  public function buildCart($menu_data) {
+    foreach($menu_data as $item => $val) {
+      if (empty($_POST[$val->getName()])) {
+        echo '';
+      } else {
+        $quantity = (int)$_POST[$val->getName()];
+        // push
+        $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice());
+        echo '<p>'.$val->getName().' x'.$quantity.'';
+        echo ' = $'.$val->getPrice() * $quantity.'</p>';
+        echo '<br>'; 
+      }
+    }
+  }
+
+  public function calculateTotal(){
+    $total = 0;
+    foreach($this->cart as $cart_item => $cart_item_val) {
+      $quantity = $cart_item_val->getQuantity();
+      $total += $cart_item_val->getPrice() * $quantity;
+    }
+    echo '$'.$total.'';
   }
 }
