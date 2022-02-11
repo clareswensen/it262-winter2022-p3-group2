@@ -22,7 +22,7 @@ class Menu {
         <h2>'.$menuItem->getName().'</h2>
         <p>'.$menuItem->getDesc().'</p>
         <p>'.$menuItem->getPrice().'</p>
-        <select>'.$menuItem->getOption($menuItem->getMax(), $menuItem->getName()).'</select>
+        <select name='.$menuItem->getName().'>'.$menuItem->getOption($menuItem->getMax(), $menuItem->getName()).'</select>
       </div>';
     }
     echo $str;
