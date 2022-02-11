@@ -6,8 +6,22 @@ include('classes/MenuItem.php');
 
 $menu_data[] = new MenuItem('Taco', 'Delicious!', 2.99, 10);
 $menu_data[] = new MenuItem('Burrito', 'Extra Tasty!', 12.99, 5);
-
+$menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
 $menu = new Menu($menu_data, 'Con Amigos Tacos');
+
+foreach($menu_data as $item => $val) {
+  if (empty($_POST[$val->getName()])) {
+    echo 'error';
+  } else {
+    echo $val->getName();
+    echo $val->getPrice();
+  }
+}
+// if(empty($_POST['Taco'])) {
+//   echo 'error';
+// } else {
+//   echo $_POST['Taco'];
+// }
 
 ?>
 
@@ -21,9 +35,9 @@ $menu = new Menu($menu_data, 'Con Amigos Tacos');
   <title>IT262 P3: Food Truck</title>
 </head>
 <body>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+  <form action="" method="POST">
     <?php $menu->buildMenu() ;?>
-    <button type="submit"> Add To Cart </button>
+    <input type="submit"> Add To Cart
   </form>
 </body>
 </html>
