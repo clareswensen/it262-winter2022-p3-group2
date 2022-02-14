@@ -11,12 +11,12 @@ $menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
 
 $menu = new Menu($menu_data, 'Menu');
 
-IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $menu->buildCart($menu_data);
-  $menu->calculateTotal();
-} else {
-  echo 'Your cart is empty';
-}
+// IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//   $menu->buildCart($menu_data);
+//   $menu->calculateTotal();
+// } else {
+//   echo 'Your cart is empty';
+// }
 
 ?>
 
@@ -52,14 +52,21 @@ IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="row">
   <div class="col-sm-8">
   <form action="" method="POST">
-    <?php $menu->buildMenu() ;?>
+    <?php $menu->buildMenu();  ?>
+    <div class="btn-group">
     <input type="submit" value="Add To Cart" class="btn-success btn-lg">
+    <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
+    </div>
   </form>
   </div>
   <div class="col-sm-2">
     <h1 class="cart-header">Shopping Cart</h1>
     <div class="container">
-      <p><?php $menu->buildCart($menu_data);?></p>
+      <p><?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                  $menu->buildCart($menu_data);
+                } else {
+                  echo '<p>Your cart is empty</p>';
+                } ?></p>
       <p><?php $menu->calculateTotal(); ?></p>
       <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p> -->

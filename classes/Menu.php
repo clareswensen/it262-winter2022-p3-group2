@@ -35,7 +35,7 @@ class Menu {
         <h2>'.$menuItem->getName().'</h2>
         <p>'.$menuItem->getDesc().'</p>
         <p>'.$menuItem->getPrice().'</p>
-        <select name='.$menuItem->getName().'>'.$menuItem->getOption($menuItem->getMax()).'</select>'
+        <select name="'.$menuItem->getName().'">'.$menuItem->getOption($menuItem->getMax()).'</select>'
         .$this->setExtras().'
       </div>';
     }
@@ -51,7 +51,7 @@ class Menu {
         $extras = $_POST['extras'];
         // push to cart
         $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice(), $extras);
-        echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x'.$quantity.'';
+        echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x '.$quantity.'';
         echo ' = $'.$val->getPrice() * $quantity.'</p></div>';
         echo '<br>';
       }
