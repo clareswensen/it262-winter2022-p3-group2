@@ -51,8 +51,8 @@ class Menu {
         $extras = $_POST['extras'];
         // push to cart
         $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice(), $extras);
-        echo '<p>'.$val->getName().' x'.$quantity.'';
-        echo ' = $'.$val->getPrice() * $quantity.'</p>';
+        echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x'.$quantity.'';
+        echo ' = $'.$val->getPrice() * $quantity.'</p></div>';
         echo '<br>';
       }
     }
@@ -68,6 +68,10 @@ class Menu {
       $total = $total + $extra_cost;
       $total = ROUND($total+ ($total * $this->tax), 2);
     }
-    echo ''.$cost.' + tax = $'.$total.'';
+
+    //echo '<p class="subtotal">Subtotal:  $'.$total.'</p>';
+    //echo '<p class="tax">Tax:  $'.$total.'</p>';
+    echo '<p class="total">Grand Total:  $'.$total.'</p>';
+
   }
 }

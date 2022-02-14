@@ -9,8 +9,102 @@ button{
   width: 25%;
 }
 .item-container{
-  border: 1px solid blue;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
   margin: 1em;
   padding: 1em;
   width: 33%;
+  background-color: #E9E7DA;
+}
+
+.navbar {
+  /* background-color: #687a8f; */
+}
+
+.navbar-header {
+  float: left;
+}
+
+.navbar-nav {
+  float: right;
+}
+
+.nav li {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+ul.nav a:hover { 
+  color: #fff !important;
+  font-size: 1.05em;
+}
+
+
+.navbar {
+  margin-bottom: 50px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+body {
+  /* background-color: beige; */
+  background-color: #EAB126;
+}
+
+.col-sm-8 {
+  /* border: solid black 3px; */
+}
+
+select {
+  float: right;
+}
+
+.btn-lg {
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+}
+
+.col-sm-2 .container {
+  background-color: #E9E7DA;
+  border: solid black 3px;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+}
+
+
+.col-sm-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.total {
+  font-weight: bold;
+  font-size: 2em;
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 0;
+}
+
+.item-div {
+  
+}
+
+.cart-item {
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+select {
+  
 }
