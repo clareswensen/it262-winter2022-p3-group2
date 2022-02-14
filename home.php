@@ -10,10 +10,10 @@ $menu_data[] = new MenuItem('Burrito', 'Extra Tasty!', 12.99, 5);
 $menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
 
 
-$menu = new Menu($menu_data, 'Con Amigos Tacos');
+$menu = new Menu($menu_data, 'Menu');
 
-$menu->buildCart($menu_data);
-$menu->calculateTotal();
+// $menu->buildCart($menu_data);
+// $menu->calculateTotal();
 
 ?>
 
@@ -36,7 +36,7 @@ $menu->calculateTotal();
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header ms-5">
-      <a class="navbar-brand" href="#">Con Amigos Taco Truck</a>
+      <a class="navbar-brand text-warning" href="#">Con Amigos Taco Truck</a>
     </div>
     <ul class="nav navbar-nav ms-auto">
       <li class="nav-item me-5"><a href="#" class="nav-link active">Home</a></li>
@@ -50,13 +50,16 @@ $menu->calculateTotal();
   <div class="col-sm-8">
   <form action="" method="POST">
     <?php $menu->buildMenu() ;?>
-    <input type="submit"> Add To Cart
+    <input type="submit" value="Add To Cart" class="btn-lg btn-success">
   </form>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-2">
+    <h1 class="cart-header">Shopping Cart</h1>
     <div class="container">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p>
+      <p><?php $menu->buildCart($menu_data);?></p>
+      <p><?php $menu->calculateTotal(); ?></p>
+      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p> -->
     </div>
   </div>
 </div>
