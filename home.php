@@ -39,10 +39,10 @@ $menu = new Menu($menu_data, 'Menu');
       <a class="navbar-brand text-warning" href="#">Con Amigos Taco Truck</a>
     </div>
     <ul class="nav navbar-nav ms-auto">
-      <li class="nav-item me-5"><a href="#" class="nav-link active">Home</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link">Menu</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link">Locations</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item me-5"><a href="#" class="nav-link active text-warning">Home</a></li>
+      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Menu</a></li>
+      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Locations</a></li>
+      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -50,7 +50,7 @@ $menu = new Menu($menu_data, 'Menu');
   <div class="col-sm-8">
   <form action="" method="POST">
     <?php $menu->buildMenu() ;?>
-    <input type="submit" value="Add To Cart" class="btn-lg btn-success">
+    <input type="submit" value="Add To Cart" class="btn-success btn-lg">
   </form>
   </div>
   <div class="col-sm-2">

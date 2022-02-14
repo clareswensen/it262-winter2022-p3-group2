@@ -39,7 +39,7 @@ class Menu {
         $quantity = (int)$_POST[$val->getName()];
         // push
         $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice());
-        echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x'.$quantity.'';
+        echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x '.$quantity.'';
         echo ' = $'.$val->getPrice() * $quantity.'</p></div>';
         echo '<br>'; 
       }
