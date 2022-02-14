@@ -29,8 +29,7 @@ class MenuItem {
   public function getMax() {
     return $this->max_quantity;
   }
-
-  public function getOption($option_count, $option_val) {
+  public function getOption($option_count) {
     $opt = '';
     for ($i = 0; $i <= $option_count; $i ++) {
       $opt .= '<option value="'.$i.'">'.$i.'</option>';
