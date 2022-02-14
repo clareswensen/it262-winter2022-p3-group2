@@ -34,7 +34,7 @@ IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
   <form action="" method="POST">
     <?php $menu->buildMenu() ;?>
-    <input type="submit"> Add To Cart
+    <input type="submit" value="Add To Cart">
   </form>
 </body>
 </html>

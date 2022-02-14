@@ -4,6 +4,7 @@ include('CartItem.php');
 class Menu {
   public $title;
   public $menuData;
+  public $tax = .065;
   // stack, list, queue
   public $cart = [];
 
@@ -47,11 +48,13 @@ class Menu {
   }
 
   public function calculateTotal(){
+    $cost = 0;
     $total = 0;
     foreach($this->cart as $cart_item => $cart_item_val) {
       $quantity = $cart_item_val->getQuantity();
-      $total += $cart_item_val->getPrice() * $quantity;
+      $cost = $total += $cart_item_val->getPrice() * $quantity;
+      $total = ROUND($total + ($total * $this->tax), 2);
     }
-    echo '$'.$total.'';
+    echo ''.$cost.' + tax = $'.$total.'';
   }
 }
