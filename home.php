@@ -13,7 +13,12 @@ $menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
 $menu = new Menu($menu_data, 'Con Amigos Tacos');
 
 $menu->buildCart($menu_data);
-$menu->calculateTotal();
+
+IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $menu->calculateTotal();
+} else {
+  echo 'Your cart is empty';
+}
 
 ?>
 
