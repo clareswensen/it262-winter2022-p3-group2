@@ -9,12 +9,11 @@ $menu_data[] = new MenuItem('Taco', 'Delicious!', 2.99, 10);
 $menu_data[] = new MenuItem('Burrito', 'Extra Tasty!', 12.99, 5);
 $menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
 
-
 $menu = new Menu($menu_data, 'Con Amigos Tacos');
 
-$menu->buildCart($menu_data);
 
 IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $menu->buildCart($menu_data);
   $menu->calculateTotal();
 } else {
   echo 'Your cart is empty';
