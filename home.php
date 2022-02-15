@@ -5,9 +5,9 @@ include('classes/Menu.php');
 include('classes/MenuItem.php');
 // include('classes/CartItem.php');
 
-$menu_data[] = new MenuItem('Taco', 'Delicious!', 2.99, 10);
-$menu_data[] = new MenuItem('Burrito', 'Extra Tasty!', 12.99, 5);
-$menu_data[] = new MenuItem('Torta', 'Muy Especial!', 7.99, 5);
+$menu_data[] = new MenuItem('Taco', 'A crispy or soft corn or wheat tortilla that is folded or rolled and stuffed with a mixture', 2.99, 10);
+$menu_data[] = new MenuItem('Burrito', 'A Mexican food that consists of a flour tortilla that is rolled or folded around your choice of filling', 12.99, 5);
+$menu_data[] = new MenuItem('Torta', 'A Mexican sandwich served on a soft roll and filled with choice of meat, sauce, and choice of toppings', 7.99, 5);
 
 $menu = new Menu($menu_data, 'Menu');
 
