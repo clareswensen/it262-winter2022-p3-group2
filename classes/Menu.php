@@ -7,7 +7,7 @@ class Menu {
   public $tax = .065;
   // stack, list, queue
   public $cart = [];
-  public $extras = array('guacamole', 'sour cream', 'cheese');
+  public $extras = array('Guacamole', 'Sour cream', 'Cheese');
 
   public function __construct($menuData, $title) {
     $this->title = $title;
