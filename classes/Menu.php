@@ -7,7 +7,7 @@ class Menu {
   public $tax = .065;
   // stack, list, queue
   public $cart = [];
-  public $extras = array('guacamole', 'sour cream', 'cheese');
+  public $extras = array('Guacamole', 'Sour cream', 'Cheese');
 
   public function __construct($menuData, $title) {
     $this->title = $title;
@@ -21,20 +21,20 @@ class Menu {
   public function setExtras(){
     $opt = '';
     foreach($this->extras as $extra){
-      $opt .= '<input type="checkbox" name="extras[]" value="'.$extra.'">'.$extra.'</input>';
+      $opt .= '<span class="extras-container"><input type="checkbox" name="extras[]" value="'.$extra.'">'.$extra.'</input></span>'; 
     }
     return $opt;
   }
 
   public function buildMenu() {
-    $str = '<h1>'.$this->getTitle().'</h1>';
+    $str = '<h1 class="menu-title">'.$this->getTitle().'</h1>';
 
     foreach($this->menuData as $menuItem) {
       $str .= 
       '<div class="item-container">
         <h2>'.$menuItem->getName().'</h2>
         <p>'.$menuItem->getDesc().'</p>
-        <p>'.$menuItem->getPrice().'</p>
+        <p class="item-price">'.$menuItem->getPrice().'</p>
         <select name="'.$menuItem->getName().'">'.$menuItem->getOption($menuItem->getMax()).'</select>'
         .$this->setExtras().'
       </div>';
@@ -59,18 +59,21 @@ class Menu {
   }
 
   public function calculateTotal(){
-    $cost = 0;
     $total = 0;
+    $subtotal = 0;
     foreach($this->cart as $cart_item => $cart_item_val) {
-      $quantity = $cart_item_val->getQuantity();
-      $cost = $total += $cart_item_val->getPrice() * $quantity;
+      $itemQuantity = $cart_item_val->getQuantity();
+      $subtotal += $cart_item_val->getPrice() * $itemQuantity;
       $extra_cost = $cart_item_val->getExtras() * .25;
-      $total = $total + $extra_cost;
-      $total = ROUND($total+ ($total * $this->tax), 2);
+      $subtotal += $extra_cost;
+      // $total = $total + $extra_cost;
+      // $total = ROUND($total+ ($total * $this->tax), 2);
     }
+    $total = number_format($subtotal+ ($subtotal * $this->tax), 2);
 
-    //echo '<p class="subtotal">Subtotal:  $'.$total.'</p>';
-    //echo '<p class="tax">Tax:  $'.$total.'</p>';
+    echo '<p class="add-ons">Add-Ons:  $'.number_format(($extra_cost), 2).'</p>';
+    echo '<p class="subtotal">Subtotal:  $'.number_format(($subtotal), 2).'</p>';
+    echo '<p class="tax">Tax:  $'.number_format(($subtotal * $this->tax), 2).'</p>';
     echo '<p class="total">Grand Total:  $'.$total.'</p>';
 
   }
