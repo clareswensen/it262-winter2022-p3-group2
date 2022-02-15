@@ -21,7 +21,7 @@ class Menu {
   public function setExtras(){
     $opt = '';
     foreach($this->extras as $extra){
-      $opt .= '<input type="checkbox" name="extras[]" value="'.$extra.'">'.$extra.'</input>';
+      $opt .= '<input type="checkbox" name="extras[]" value="'.$extra.'">'.$extra.'</input>'; 
     }
     return $opt;
   }

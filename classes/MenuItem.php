@@ -24,7 +24,7 @@ class MenuItem {
     return $this->description;
   }
   public function getPrice() {
-    return $this->price;
+    return '$' . $this->price;
   }
   public function getMax() {
     return $this->max_quantity;

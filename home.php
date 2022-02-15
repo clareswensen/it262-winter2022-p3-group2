@@ -1,4 +1,4 @@
-<?php 
+<?php
 // menu.php
 // home page for app where user can select items from menu and add to cart
 include('classes/Menu.php');
@@ -22,6 +22,7 @@ $menu = new Menu($menu_data, 'Menu');
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,44 +35,44 @@ $menu = new Menu($menu_data, 'Menu');
   <link href="style.css" rel="stylesheet">
   <title>IT262 P3: Food Truck</title>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header ms-5">
-      <a class="navbar-brand text-warning" href="#">Con Amigos Taco Truck</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header ms-5">
+        <a class="navbar-brand" href="#"><span class="grn">Con Amigos</span> <span class="wht">Taco</span> <span class="red">Truck</span></a>
+      </div>
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item me-5"><a href="#" class="nav-link active text-warning">Home</a></li>
+        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Menu</a></li>
+        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Locations</a></li>
+        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Contact</a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav ms-auto">
-      <li class="nav-item me-5"><a href="#" class="nav-link active text-warning">Home</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Menu</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Locations</a></li>
-      <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="row">
-  <div class="col-sm-8">
-  <form action="" method="POST">
-    <?php $menu->buildMenu();  ?>
-    <div class="btn-group">
-    <input type="submit" value="Add To Cart" class="btn-success btn-lg">
-    <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
+  </nav>
+  <div class="row">
+    <div class="col-sm-8">
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <?php $menu->buildMenu(); ?>
+        <div class="btn-group">
+          <input type="submit" value="Add To Cart" class="btn-success btn-lg">
+          <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
+        </div>
+      </form>
     </div>
-  </form>
-  </div>
-  <div class="col-sm-2">
-    <h1 class="cart-header">Shopping Cart</h1>
-    <div class="container">
-      <p><?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                  $menu->buildCart($menu_data);
-                } else {
-                  echo '<p>Your cart is empty</p>';
-                } ?></p>
-      <p><?php $menu->calculateTotal(); ?></p>
-      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure labore eligendi, nam quibusdam exercitationem quaerat sequi deleniti soluta tenetur blanditiis obcaecati cum! Modi eligendi, earum rerum similique nesciunt repellat temporibus!</p> -->
+    <div class="col-sm-2">
+      <h1 class="cart-header">Shopping Cart</h1>
+      <div class="container">
+        <p><?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              $menu->buildCart($menu_data);
+            } else {
+              echo '<p>Your cart is empty.</p>';
+            } ?></p>
+        <p><?php $menu->calculateTotal(); ?></p>
+      </div>
     </div>
   </div>
-</div>
 </body>
+
 </html>
