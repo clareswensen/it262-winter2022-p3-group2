@@ -48,7 +48,11 @@ class Menu {
         echo '';
       } else {
         $quantity = (int)$_POST[$val->getName()];
-        $extras = $_POST['extras'];
+        if (isset($_POST['extras'])){
+          $extras = $_POST['extras'];
+        } else {
+          $extras = [];
+        }
         // push to cart
         $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice(), $extras);
         echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x '.$quantity.'';
