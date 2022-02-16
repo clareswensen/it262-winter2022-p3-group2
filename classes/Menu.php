@@ -40,8 +40,9 @@ class Menu {
       </div>';
     }
     echo $str;
+    echo '<hr>';
   }
-
+ 
   public function buildCart($menu_data) {
     foreach($menu_data as $item => $val) {
       if (empty($_POST[$val->getName()])) {
@@ -57,7 +58,7 @@ class Menu {
         $this->cart[] = new CartItem($quantity, $val->getName(), $val->getPrice(), $extras);
         echo '<div class="item-div"><p class="cart-item">'.$val->getName().' x '.$quantity.'';
         echo ' = $'.$val->getPrice() * $quantity.'</p></div>';
-        echo '<br>';
+      
       }
     }
   }

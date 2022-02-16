@@ -57,22 +57,26 @@ $menu = new Menu($menu_data, 'Menu');
         <?php $menu->buildMenu(); ?>
         <div class="btn-group">
           <input type="submit" value="Add To Cart" class="btn-success btn-lg">
-          <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
+          <!-- <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span> -->
         </div>
       </form>
     </div>
-    <div class="col-sm-2">
-      <h1 class="cart-header">Shopping Cart</h1>
-      <div class="container">
-        <p><?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-              $menu->buildCart($menu_data);
-            } else {
+    <div class="col-sm-4">
+      <h1 class="cart-header">Cart</h1>
+      <div class="cart-container">
+        <h1>Order Details:</h1>
+        <p><?php if ($_SERVER['REQUEST_METHOD'] != 'POST') {
               echo '<p>Your cart is empty.</p>';
+            } else {
+              $menu->buildCart($menu_data);
+              
             } ?></p>
         <p><?php $menu->calculateTotal(); ?></p>
+        <div class="btn-group">
+        <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
       </div>
+      </div>
+      
     </div>
   </div>
 </body>
-
-</html>

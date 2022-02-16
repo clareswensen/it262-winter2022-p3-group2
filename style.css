@@ -7,25 +7,6 @@ form {
   flex-direction: column;
 }
 
-.menu-title {
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.item-container {
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
-  margin: 1em;
-  padding: 1em;
-  width: 33%;
-  background-color: #E9E7DA;
-}
-
-.item-price {
-  font-weight: bold;
-}
-
 .navbar-header {
   float: left;
 }
@@ -58,7 +39,6 @@ ul.nav a:hover {
   font-size: 1.05em;
 }
 
-
 .navbar {
   margin-bottom: 50px;
 }
@@ -72,19 +52,46 @@ body {
   background-color: #EAB126;
 }
 
+/* food ordering menu */
+.menu-title {
+  font-weight: 600;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+  width: 60%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.item-container {
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+  margin-bottom: 1em;
+  padding: 1.5em;
+  width: 80%;
+  background-color: #E9E7DA;
+}
+
+.item-price {
+  font-weight: bold;
+}
 
 select {
   float: right;
 }
 
-.btn-lg {
-  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
-  margin-bottom: 20px;
+input[type=checkbox] {
+  margin-right: 5px;
 }
 
-.btn-danger {
-  margin-left: 10px;
-  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64) !important;
+.extras-container {
+  padding-right: 10px;
+}
+
+.btn-lg {
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
   margin-bottom: 20px;
 }
 
@@ -98,82 +105,71 @@ select {
   color: white;
 }
 
-.col-sm-2 .container {
-  background-color: #E9E7DA;
-  border: solid black 2px;
-  height: 100%;
+/* stlyes for shopping cart */
+.cart-header {
+  font-weight: 600;
+  border: 2px solid black;
+  padding: 10px;
   border-radius: 10px;
+  width: 60%;
+  text-align: center;
   box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 
-
-.col-sm-2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
+.cart-container {
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+  padding: 1em;
+  width: 80%;
+  text-align: center;
+  background-color: #E9E7DA;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
-.total {
-  font-weight: bold;
-  font-size: 2em;
-  vertical-align: bottom;
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 15px;
-  
+.cart-item, .add-ons{
+  padding-left: 10px;
+  font-size: 1.3em;
+  margin-bottom: -5px;
+
+}
+
+.add-ons {
+  margin-bottom: 2em;
 }
 
 .subtotal {
   font-weight: 600;
   font-size: 1.45em;
   vertical-align: bottom;
-  position: absolute;
   bottom: 0;
-  padding-bottom: 100px;
+  padding-bottom: 5px;
+  color: green;
 }
 
 .tax {
   font-weight: 600;
   font-size: 1.45em;
   vertical-align: bottom;
-  position: absolute;
   bottom: 0;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
+  color: green;
 }
 
-.add-ons {
-  font-weight: 600;
-  font-size: 1.40em;
-  vertical-align: bottom;
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 140px;
-}
-
-.cart-item {
-  padding-left: 20px;
-  padding-top: 20px;
-  font-size: 1.3em;
+.total {
   font-weight: bold;
+  font-size: 2em;
+  vertical-align: bottom;
+  padding-bottom:5px;
+  color: #EAB126;
+  text-shadow: 1px 2px black;
 }
 
-.cart-header {
+.btn-danger {
+  margin-left: 10px;
+  box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64) !important;
   margin-bottom: 20px;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-input[type=checkbox] {
-  margin-right: 5px;
-}
-
-/* .extras-container input {
-  padding-right: 5px;
-} */
-
-.extras-container {
-  padding-right: 10px;
 }
