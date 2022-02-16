@@ -65,6 +65,7 @@ class Menu {
   public function calculateTotal(){
     $total = 0;
     $subtotal = 0;
+    $extra_cost = 0;
     foreach($this->cart as $cart_item => $cart_item_val) {
       $itemQuantity = $cart_item_val->getQuantity();
       $subtotal += $cart_item_val->getPrice() * $itemQuantity;
@@ -74,7 +75,6 @@ class Menu {
       // $total = ROUND($total+ ($total * $this->tax), 2);
     }
     $total = number_format($subtotal+ ($subtotal * $this->tax), 2);
-
     echo '<p class="add-ons">Add-Ons:  $'.number_format(($extra_cost), 2).'</p>';
     echo '<p class="subtotal">Subtotal:  $'.number_format(($subtotal), 2).'</p>';
     echo '<p class="tax">Tax:  $'.number_format(($subtotal * $this->tax), 2).'</p>';
