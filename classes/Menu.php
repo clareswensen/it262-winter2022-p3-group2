@@ -28,15 +28,14 @@ class Menu {
     $str = '<h1 class="menu-title">'.$this->getTitle().'</h1>';
     foreach($this->menuItems as $menuItem) {
       $str .= 
-      '<div class="col-12">
+      '
         <div class="item-container">
           <h2>'.$menuItem->getName().'</h2>
           <p>'.$menuItem->getDesc().'</p>
           <p class="item-price">$'.$menuItem->getPrice().'</p>
           <select name="'.$menuItem->getName().'">'.$menuItem->getOption($menuItem->getMax()).'</select>'
           .$this->setExtras().'
-        </div>
-      </div>';
+        </div>';
     }
     echo $str;
   }
