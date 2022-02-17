@@ -23,22 +23,6 @@ form {
   color: red;
 }
 
-.navbar-nav {
-  float: right;
-}
-
-.nav li {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-ul.nav a:hover { 
-  color: #fff !important;
-  font-size: 1.05em;
-}
-
 .navbar {
   margin-bottom: 50px;
 }
