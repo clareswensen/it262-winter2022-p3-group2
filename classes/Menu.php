@@ -25,7 +25,7 @@ class Menu {
   }
 
   public function getMenu() {
-    $str = '<h1 class="header">'.$this->getTitle().'</h1>';
+    $str = '<h1 class="menu-title">'.$this->getTitle().'</h1>';
     foreach($this->menuItems as $menuItem) {
       $str .= 
       '<div class="col-12">

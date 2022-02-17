@@ -71,7 +71,7 @@ if (isset($_POST['emptyCart'])) {
         <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
       </div>
       <div class="col-6">
-        <h1 class="header">Cart</h1>
+        <h1 class="header">Shopping Cart</h1>
         <div class="cart-container">
           <h1>Order Details:</h1>
           <?php $menu->showCart($_SESSION);?>
@@ -79,7 +79,7 @@ if (isset($_POST['emptyCart'])) {
             <?php $menu->calculateTotal($_SESSION); ?>
           </p>
           <div class="btn-group">
-            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="empty cart"></input></span>
+            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
           </div>
         </div>
       </form>
