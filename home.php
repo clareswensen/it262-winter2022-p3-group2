@@ -1,23 +1,45 @@
 <?php
 // menu.php
-// home page for app where user can select items from menu and add to cart
+// this is the home page for app where users can select items from a menu and add to a cart
 include('classes/Menu.php');
 include('classes/MenuItem.php');
-// include('classes/CartItem.php');
+include('classes/CartItem.php');
 
-$menu_data[] = new MenuItem('Taco', 'A crispy or soft corn or wheat tortilla that is folded or rolled and stuffed with a mixture', 2.99, 10);
-$menu_data[] = new MenuItem('Burrito', 'A Mexican food that consists of a flour tortilla that is rolled or folded around your choice of filling', 12.99, 5);
-$menu_data[] = new MenuItem('Torta', 'A Mexican sandwich served on a soft roll and filled with choice of meat, sauce, and choice of toppings', 7.99, 5);
+// start a session
+session_start();
 
-$menu = new Menu($menu_data, 'Menu');
+// build an array of MenuItem objects
+$menuItems[] = new MenuItem('Taco', 'A crispy or soft corn or wheat tortilla that is folded or rolled and stuffed with a mixture', 2.99, 10);
+$menuItems[] = new MenuItem('Burrito', 'A Mexican food that consists of a flour tortilla that is rolled or folded around your choice of filling', 12.99, 5);
+$menuItems[] = new MenuItem('Torta', 'A Mexican sandwich served on a soft roll and filled with choice of meat, sauce, and choice of toppings', 7.99, 5);
 
-// IF ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//   $menu->buildCart($menu_data);
-//   $menu->calculateTotal();
-// } else {
-//   echo 'Your cart is empty';
-// }
+// instantiate a new Menu, passing menuItems and a title string
+$menu = new Menu($menuItems, 'Menu');
 
+// add to cart function:
+if(isset($_POST['addToCart'])) { // if the addToCart button been pushed...
+
+  foreach($menuItems as $item => $val) {
+
+    // check if item has been selected
+    if($_POST[$val->getName()] > 0) {
+      
+      if (isset($_POST['extras'])) { // capture the extras from the post event
+        $extras = $_POST['extras'];
+      } else {
+        $extras = [];
+      }
+      
+      $_SESSION[$val->getName()] = new CartItem((int)$_POST[$val->getName()], $val->getName(), $val->getPrice(), $extras); // add the CartItem to the Cart
+    }
+  }
+}
+
+// clear cart function:
+if (isset($_POST['emptyCart'])) {
+  $_SESSION = [];
+  session_destroy();
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +59,6 @@ $menu = new Menu($menu_data, 'Menu');
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header ms-5">
@@ -52,31 +73,24 @@ $menu = new Menu($menu_data, 'Menu');
     </div>
   </nav>
   <div class="row">
-    <div class="col-sm-8">
-      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-        <?php $menu->buildMenu(); ?>
-        <div class="btn-group">
-          <input type="submit" value="Add To Cart" class="btn-success btn-lg">
-          <!-- <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span> -->
+    <div class="col-6">
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
+        <?php $menu->getMenu(); ?>
+        <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
+      </div>
+      <div class="col-6">
+        <h1 class="header">Cart</h1>
+        <div class="cart-container">
+          <h1>Order Details:</h1>
+          <?php $menu->showCart($_SESSION);?>
+          <p>
+            <?php $menu->calculateTotal($_SESSION); ?>
+          </p>
+          <div class="btn-group">
+            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="empty cart"></input></span>
+          </div>
         </div>
       </form>
-    </div>
-    <div class="col-sm-4">
-      <h1 class="cart-header">Cart</h1>
-      <div class="cart-container">
-        <h1>Order Details:</h1>
-        <p><?php if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-              echo '<p>Your cart is empty.</p>';
-            } else {
-              $menu->buildCart($menu_data);
-              
-            } ?></p>
-        <p><?php $menu->calculateTotal(); ?></p>
-        <div class="btn-group">
-        <span class="btn-danger btn-lg"><a class="button-text" href="">Empty Cart</a></span>
-      </div>
-      </div>
-      
     </div>
   </div>
 </body>

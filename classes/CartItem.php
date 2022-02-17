@@ -22,6 +22,10 @@ class CartItem
     return $this->price;
   }
 
+  public function getName() {
+    return $this->name;
+  }
+
   public function getExtras(){
     return count($this->extras);
   }
