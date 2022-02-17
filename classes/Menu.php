@@ -40,7 +40,7 @@ class Menu {
     }
     echo $str;
   }
- 
+
   public function showCart($cartItems) {
     foreach($cartItems as $item => $val) {
       $quantity = $val->quantity;

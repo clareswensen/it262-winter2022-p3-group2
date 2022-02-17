@@ -62,15 +62,7 @@ if (isset($_POST['emptyCart'])) {
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header ms-5">
-        <a class="navbar-brand" href="#"><span class="grn">Con Amigos</span> <span class="wht">Taco</span> <span class="red">Truck</span></a>
-      </div>
-      <ul class="nav navbar-nav ms-auto">
-        <li class="nav-item me-5"><a href="#" class="nav-link active text-warning">Home</a></li>
-        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Menu</a></li>
-        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Locations</a></li>
-        <li class="nav-item me-5"><a href="#" class="nav-link text-warning">Contact</a></li>
-      </ul>
-    </div>
+        <a class="navbar-brand" href="#"><span class="grn">Con Amigos</span> <span class="wht">Taco</span> <span class="red">Truck</span></a>   
   </nav>
   <div class="row">
     <div class="col-6">
