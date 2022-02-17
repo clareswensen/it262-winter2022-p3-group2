@@ -8,6 +8,7 @@ class MenuItem {
   public $name;
   public $description;
   public $price;
+  public $quantity;
   private $max_quantitiy;
 
   public function __construct(String $name, String $description, Float $price, int $max_quantitiy) {
