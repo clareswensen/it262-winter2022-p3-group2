@@ -65,23 +65,21 @@ if (isset($_POST['emptyCart'])) {
         <a class="navbar-brand" href="#"><span class="grn">Con Amigos</span> <span class="wht">Taco</span> <span class="red">Truck</span></a>   
   </nav>
   <div class="row">
-    <div class="col-12">    
+    <div class="col-12">
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
-        <div class="col-6">
-          <?php $menu->getMenu(); ?>
-          <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
-        </div>
-        <div class="col-6">
-          <h1 class="header">Cart</h1>
-          <div class="cart-container">
-            <h1>Order Details:</h1>
-            <?php $menu->showCart($_SESSION);?>
-            <p>
-              <?php $menu->calculateTotal($_SESSION); ?>
-            </p>
-            <div class="btn-group">
-              <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="empty cart"></input></span>
-            </div>
+        <?php $menu->getMenu(); ?>
+        <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
+      </div>
+      <div class="col-6">
+        <h1 class="header">Shopping Cart</h1>
+        <div class="cart-container">
+          <h1>Order Details:</h1>
+          <?php $menu->showCart($_SESSION);?>
+          <p>
+            <?php $menu->calculateTotal($_SESSION); ?>
+          </p>
+          <div class="btn-group">
+            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
           </div>
         </div>
       </form>
