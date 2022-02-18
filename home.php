@@ -6,9 +6,6 @@ include('classes/MenuItem.php');
 include('classes/CartItem.php');
 include('classes/Cart.php');
 
-// start a session
-session_start();
-
 // build an array of MenuItem objects
 $menuItems[] = new MenuItem('Taco', 'A crispy or soft corn or wheat tortilla that is folded or rolled and stuffed with a mixture', 2.99, 10);
 $menuItems[] = new MenuItem('Burrito', 'A Mexican food that consists of a flour tortilla that is rolled or folded around your choice of filling', 12.99, 5);
@@ -18,12 +15,10 @@ $menuItems[] = new MenuItem('Torta', 'A Mexican sandwich served on a soft roll a
 $menu = new Menu($menuItems, 'Menu');
 $cart = new Cart();
 
-// add to cart function:
+// listeners
 if(isset($_POST['addToCart'])) {
   $cart->pushToCart($menuItems);
 }
-
-// clear cart function:
 if (isset($_POST['emptyCart'])) {
   $cart->clearCart();
 }

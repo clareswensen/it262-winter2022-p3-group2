@@ -27,7 +27,7 @@ class CartItem
   }
 
   public function getExtras(){
-    return count($this->extras);
+    return $this->extras;
   }
 
 }
