@@ -55,10 +55,10 @@ if (isset($_POST['emptyCart'])) {
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
         <div class="col-12">
           <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-10">
               <?php $menu->getMenu(); ?>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-md-10">
               <h1 class="header">Shopping Cart</h1>
               <div class="cart-container">
                 <h1>Order Details:</h1>
