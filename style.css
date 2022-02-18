@@ -2,9 +2,6 @@
 
 form {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .navbar-header {
@@ -36,6 +33,13 @@ body {
   background-color: #EAB126;
 }
 
+.sticky {
+  bottom: 0px;
+  left: 0px;
+  position: sticky;
+  margin-bottom: 1em;
+}
+
 /* food ordering menu */
 .menu-title {
   font-weight: 600;
@@ -52,7 +56,7 @@ body {
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
-  margin-bottom: 1em;
+  margin: 0 auto 1em auto;
   padding: 1.5em;
   width: 80%;
   background-color: #E9E7DA;
@@ -106,6 +110,7 @@ input[type=checkbox] {
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 5px 2.5px 2.5px rgb(65, 64, 64);
+  position: sticky;
   padding: 1em;
   width: 80%;
   text-align: center;

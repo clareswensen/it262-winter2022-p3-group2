@@ -4,6 +4,7 @@
 include('classes/Menu.php');
 include('classes/MenuItem.php');
 include('classes/CartItem.php');
+include('classes/Cart.php');
 
 // start a session
 session_start();
@@ -15,35 +16,16 @@ $menuItems[] = new MenuItem('Torta', 'A Mexican sandwich served on a soft roll a
 
 // instantiate a new Menu, passing menuItems and a title string
 $menu = new Menu($menuItems, 'Menu');
+$cart = new Cart();
 
 // add to cart function:
-if(isset($_POST['addToCart'])) { // if the addToCart button been pushed...
-
-  foreach($menuItems as $item => $val) {
-
-    // check if item has been selected
-    if($_POST[$val->getName()] > 0) {
-      if (isset($_POST['extras'])) { // capture the extras from the post event
-        $extras = $_POST['extras'];
-      } else {
-        $extras = [];
-      }
-      if (!isset($_SESSION['cart'][$val->getName()])) {
-        $_SESSION['cart'][$val->getName()] = new CartItem($_POST[$val->getName()], $val->getName(), $val->getPrice(), $extras); // add the CartItem to the Cart
-      } else {
-        if (isset($_POST['extras'])) { // capture the extras from the post event
-          $_SESSION['cart'][$val->getName()]->extras = array_merge($_SESSION['cart'][$val->getName()]->extras, $_POST['extras']);
-        }
-        $_SESSION['cart'][$val->getName()]->quantity = $_SESSION['cart'][$val->getName()]->quantity + $_POST[$val->getName()];
-      }
-    }
-  }
+if(isset($_POST['addToCart'])) {
+  $cart->pushToCart($menuItems);
 }
 
 // clear cart function:
 if (isset($_POST['emptyCart'])) {
-  $_SESSION = [];
-  session_destroy();
+  $cart->clearCart();
 }
 ?>
 
@@ -71,30 +53,34 @@ if (isset($_POST['emptyCart'])) {
   </nav>
   <div class="row">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
-      <?php $menu->getMenu(); ?>
-      <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
-      <div class="col-6">
-        <h1 class="header">Shopping Cart</h1>
-        <div class="cart-container">
-          <h1>Order Details:</h1>
-          <?php 
-          if (isset($_SESSION['cart'])){
-            $menu->showCart($_SESSION['cart']);
-          } else {
-            echo 'your cart is empty';
-          }
-          ?>
-          <p>
-            <?php
-            if (isset($_SESSION['cart'])){
-              $menu->calculateTotal($_SESSION['cart']);
-            }?>
-          </p>
-          <div class="btn-group">
-            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6">
+              <?php $menu->getMenu(); ?>
+            </div>
+            <div class="col-6">
+              <h1 class="header">Shopping Cart</h1>
+              <div class="cart-container">
+                <h1>Order Details:</h1>
+                <?php 
+                if (isset($_SESSION['cart'])){
+                  $menu->showCart($_SESSION['cart']);
+                ?>
+                <p>
+                  <?php
+                    $menu->calculateTotal($_SESSION['cart']);
+                  } else {
+                    echo 'Your Cart is Empty';
+                  }?>
+                </p>
+                <div class="btn-group">
+                  <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg sticky">
+                  <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </form>
   </div>
 </body>
