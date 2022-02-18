@@ -23,14 +23,19 @@ if(isset($_POST['addToCart'])) { // if the addToCart button been pushed...
 
     // check if item has been selected
     if($_POST[$val->getName()] > 0) {
-      
       if (isset($_POST['extras'])) { // capture the extras from the post event
         $extras = $_POST['extras'];
       } else {
         $extras = [];
       }
-      
-      $_SESSION[$val->getName()] = new CartItem((int)$_POST[$val->getName()], $val->getName(), $val->getPrice(), $extras); // add the CartItem to the Cart
+      if (!isset($_SESSION['cart'][$val->getName()])) {
+        $_SESSION['cart'][$val->getName()] = new CartItem($_POST[$val->getName()], $val->getName(), $val->getPrice(), $extras); // add the CartItem to the Cart
+      } else {
+        if (isset($_POST['extras'])) { // capture the extras from the post event
+          $_SESSION['cart'][$val->getName()]->extras = array_merge($_SESSION['cart'][$val->getName()]->extras, $_POST['extras']);
+        }
+        $_SESSION['cart'][$val->getName()]->quantity = $_SESSION['cart'][$val->getName()]->quantity + $_POST[$val->getName()];
+      }
     }
   }
 }
@@ -65,24 +70,31 @@ if (isset($_POST['emptyCart'])) {
         <a class="navbar-brand" href="#"><span class="grn">Con Amigos</span> <span class="wht">Taco</span> <span class="red">Truck</span></a>   
   </nav>
   <div class="row">
-    <div class="col-12">
-      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
-        <?php $menu->getMenu(); ?>
-        <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
-      </div>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
+      <?php $menu->getMenu(); ?>
+      <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
       <div class="col-6">
         <h1 class="header">Shopping Cart</h1>
         <div class="cart-container">
           <h1>Order Details:</h1>
-          <?php $menu->showCart($_SESSION);?>
+          <?php 
+          if (isset($_SESSION['cart'])){
+            $menu->showCart($_SESSION['cart']);
+          } else {
+            echo 'your cart is empty';
+          }
+          ?>
           <p>
-            <?php $menu->calculateTotal($_SESSION); ?>
+            <?php
+            if (isset($_SESSION['cart'])){
+              $menu->calculateTotal($_SESSION['cart']);
+            }?>
           </p>
           <div class="btn-group">
             <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </body>
