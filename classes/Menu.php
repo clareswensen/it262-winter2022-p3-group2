@@ -35,17 +35,17 @@ class Menu {
           <p class="item-price">$'.$menuItem->getPrice().'</p>
           <select name="'.$menuItem->getName().'">'.$menuItem->getOption($menuItem->getMax()).'</select>'
           .$this->setExtras().'
-        </div>';
+        </div>'
+      ;
     }
     echo $str;
   }
 
   public function showCart($cartItems) {
     foreach($cartItems as $item => $val) {
-      $quantity = $val->quantity;
       echo '
       <div class="item-div">
-        <p class="cart-item">'.$val->getName().' x '.$quantity.'
+        <p class="cart-item">'.$val->getName().' x'.$val->getQuantity().'
       ';
     }
   }
@@ -54,6 +54,15 @@ class Menu {
     $total = 0;
     $subtotal = 0;
     $extra_cost = 0;
+    // for($i = 0; $i < count($cart) - 1; $i++){
+    //   $quantity = 0;
+    //   for ($j = 0; $j < count($cart); $j++){
+    //     if ($cart[$i]->name == $cart[$j]->name){
+    //       $quantity = $quantity + 1;
+    //     }
+    //   }
+    // }
+    // echo $quantity;
     foreach($cart as $cart_item => $cart_item_val) {
       $itemQuantity = $cart_item_val->getQuantity();
       $subtotal += $cart_item_val->getPrice() * $itemQuantity;
