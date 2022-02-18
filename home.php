@@ -71,30 +71,35 @@ if (isset($_POST['emptyCart'])) {
   </nav>
   <div class="row">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ;?>" method="POST">
-      <?php $menu->getMenu(); ?>
-      <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg">
-      <div class="col-6">
-        <h1 class="header">Shopping Cart</h1>
-        <div class="cart-container">
-          <h1>Order Details:</h1>
-          <?php 
-          if (isset($_SESSION['cart'])){
-            $menu->showCart($_SESSION['cart']);
-          } else {
-            echo 'your cart is empty';
-          }
-          ?>
-          <p>
-            <?php
-            if (isset($_SESSION['cart'])){
-              $menu->calculateTotal($_SESSION['cart']);
-            }?>
-          </p>
-          <div class="btn-group">
-            <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6">
+              <?php $menu->getMenu(); ?>
+            </div>
+            <div class="col-6">
+              <h1 class="header">Shopping Cart</h1>
+              <div class="cart-container">
+                <h1>Order Details:</h1>
+                <?php 
+                if (isset($_SESSION['cart'])){
+                  $menu->showCart($_SESSION['cart']);
+                } else {
+                  echo 'Your Cart is Empty';
+                }?>
+                <p>
+                  <?php
+                  if (isset($_SESSION['cart'])){
+                    $menu->calculateTotal($_SESSION['cart']);
+                  }?>
+                </p>
+                <div class="btn-group">
+                  <input type="submit" name="addToCart" value="Add To Cart" class="btn-success btn-lg sticky">
+                  <span><input class="btn-danger btn-lg" type="submit" name="emptyCart" value="Empty Cart"></input></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </form>
   </div>
 </body>
